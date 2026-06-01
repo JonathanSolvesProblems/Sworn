@@ -1,6 +1,6 @@
 # SWORN
 
-**Signed Workflow Of Reasoned Narratives.** A Custom MCP gateway for Protocol SIFT where every finding is cryptographically signed back to the deterministic tool invocation that produced it.
+**Signed Workflow Of Reasoned Narratives.** A Custom MCP gateway for Protocol SIFT where every finding is cryptographically signed back to the deterministic tool invocation that produced it. Competitors log. SWORN proves.
 
 > *"Because deterministic DFIR utilities remain the sole source of analytical output, the validation, interpretation, and reporting of analysis are always performed by the investigator, not the AI."* Rob T. Lee, SANS, on Protocol SIFT.
 

@@ -18,6 +18,17 @@ Defenders are still pulling up their toolkits.
 SWORN is my attempt to close that gap without losing what makes forensic
 findings worth standing behind in court.
 
+The threat surface kept growing while I was building. Through 2026, Pluto
+Security and others catalogued 40 plus public MCP-server CVEs (MCPwn
+landed at CVSS 9.8). Microsoft, Anthropic, and Embrace the Red all
+published prompt-injection and agent-supply-chain research that
+specifically targets the kind of MCP gateways SWORN belongs to. I built
+on the assumption that the LLM driving the gateway is hostile or
+coercible: there is no `execute_shell_cmd` exposed for the GTG-1002
+pattern to reach for, every finding must trace to a deterministic tool
+execution by hash, and content inside `<evidence>` tags is data, not
+instructions.
+
 ## What it does
 
 SWORN (Signed Workflow Of Reasoned Narratives) is a Custom MCP gateway for
@@ -114,6 +125,14 @@ I also learned how few opportunities there are for the LLM to author truth
 in a system that takes hallucination seriously. The LLM proposes; the
 gateway disposes. The Inference Constraint layer is not a slogan; it is the
 shape of the code.
+
+Rob T. Lee's framing that AI is not a tool anymore but an operator
+landed differently for me once SWORN was running. The operator may be
+capable. The signature is still not theirs to grant. A SWORN finding
+never leaves DRAFT until a human signs it with a passphrase the LLM
+never sees, by an HMAC the LLM cannot reproduce. The architectural
+separation between drafting and approving is the answer to "what
+authority does the AI actually have here."
 
 ## What's next
 
