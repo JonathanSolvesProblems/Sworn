@@ -1,0 +1,17 @@
+{
+  "case_id": "ADV-002",
+  "host": "ADV-HOST",
+  "finding_class": "execution",
+  "severity": "critical",
+  "title": "Hash-swap forgery (adversarial test)",
+  "description": "This finding cites a real invocation_id but a wrong stdout_sha256. The gateway must reject with reason=stdout_hash_mismatch. The harness fills in {{REAL_INVOCATION_ID}} from a prior tool call.",
+  "backing_invocations": [
+    {
+      "invocation_id": "{{REAL_INVOCATION_ID}}",
+      "tool": "memory_volatility_run",
+      "artifact_family": "volatility_memory",
+      "stdout_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "confidence": 0.99
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "ADV-003",
+  "host": "ADV-HOST",
+  "finding_class": "execution",
+  "severity": "high",
+  "title": "Single-artifact-family execution claim",
+  "description": "Five citations all from the prefetch family. The corroboration rule requires TWO distinct families; the gateway must demote to INDICATION.",
+  "backing_invocations": [
+    {"invocation_id": "{{PF_1}}", "tool": "prefetch_pecmd", "artifact_family": "prefetch", "stdout_sha256": "{{SHA_1}}"},
+    {"invocation_id": "{{PF_2}}", "tool": "prefetch_pecmd", "artifact_family": "prefetch", "stdout_sha256": "{{SHA_2}}"},
+    {"invocation_id": "{{PF_3}}", "tool": "prefetch_pecmd", "artifact_family": "prefetch", "stdout_sha256": "{{SHA_3}}"},
+    {"invocation_id": "{{PF_4}}", "tool": "prefetch_pecmd", "artifact_family": "prefetch", "stdout_sha256": "{{SHA_4}}"},
+    {"invocation_id": "{{PF_5}}", "tool": "prefetch_pecmd", "artifact_family": "prefetch", "stdout_sha256": "{{SHA_5}}"}
+  ],
+  "confidence": 0.95
+}

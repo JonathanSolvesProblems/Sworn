@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#111"/>
+    </marker>
+    <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#b00"/>
+    </marker>
+  </defs>
+  <style>
+    .lbl { font-size: 13px; fill: #111; }
+    .small { font-size: 11px; fill: #444; }
+    .title { font-size: 20px; font-weight: 700; fill: #111; }
+    .legend { font-size: 12px; fill: #333; }
+    .box { fill: #fafafa; stroke: #111; stroke-width: 1.4; }
+    .box-arch { fill: #eef6ff; stroke: #1a4fa1; stroke-width: 1.6; }
+    .box-prompt { fill: #fff7e8; stroke: #b07a17; stroke-width: 1.4; stroke-dasharray: 6 3; }
+    .box-untrusted { fill: #fde9e9; stroke: #a51212; stroke-width: 1.6; }
+    .box-evidence { fill: #f1efff; stroke: #4a3aa5; stroke-width: 1.6; }
+    .box-tool { fill: #f0fbf2; stroke: #1f7a3a; stroke-width: 1.2; }
+    .arrow { stroke: #111; stroke-width: 1.4; fill: none; }
+    .arrow-block { stroke: #b00; stroke-width: 1.8; fill: none; stroke-dasharray: 5 3; }
+  </style>
+
+  <text x="40" y="44" class="title">SWORN: Inference Constraint Gateway over the SIFT toolset</text>
+  <text x="40" y="64" class="small">Trust boundaries are coloured. Architectural defenses are solid; prompt-based reinforcements are dashed amber.</text>
+
+  <!-- Untrusted: orchestrator + sub-agents -->
+  <rect x="40" y="100" width="320" height="180" rx="8" class="box-untrusted"/>
+  <text x="50" y="125" class="lbl" font-weight="700">Untrusted: LLM orchestrator + specialists</text>
+  <text x="50" y="148" class="small">Claude Code / OpenClaw / multi-agent (memory, disk,</text>
+  <text x="50" y="164" class="small">network, synthesizer). Evidence content is also</text>
+  <text x="50" y="180" class="small">untrusted: never interpreted as instructions.</text>
+  <rect x="60" y="200" width="120" height="60" rx="6" class="box"/>
+  <text x="70" y="222" class="lbl">Orchestrator</text>
+  <text x="70" y="240" class="small">claude / openclaw</text>
+  <rect x="200" y="200" width="140" height="60" rx="6" class="box"/>
+  <text x="210" y="222" class="lbl">Specialists</text>
+  <text x="210" y="240" class="small">memory / disk / network /</text>
+  <text x="210" y="254" class="small">synthesizer (each capped)</text>
+
+  <!-- Inference Constraint Gateway -->
+  <rect x="430" y="100" width="380" height="370" rx="10" class="box-arch"/>
+  <text x="445" y="125" class="lbl" font-weight="700">SWORN Inference Constraint Gateway (MCP)</text>
+  <text x="445" y="143" class="small">Architectural enforcement. No execute_shell_cmd.</text>
+
+  <rect x="445" y="160" width="170" height="56" rx="6" class="box"/>
+  <text x="455" y="180" class="lbl">Finding validator</text>
+  <text x="455" y="196" class="small">reject if no invocation_id</text>
+  <text x="455" y="210" class="small">reject if hash mismatch</text>
+
+  <rect x="630" y="160" width="165" height="56" rx="6" class="box"/>
+  <text x="640" y="180" class="lbl">Corroboration rules</text>
+  <text x="640" y="196" class="small">2+ artifact families per</text>
+  <text x="640" y="210" class="small">finding class or auto-INDICATION</text>
+
+  <rect x="445" y="230" width="170" height="56" rx="6" class="box"/>
+  <text x="455" y="250" class="lbl">Ed25519 ledger</text>
+  <text x="455" y="266" class="small">actions.jsonl, append-only,</text>
+  <text x="455" y="280" class="small">hash-chained, signed</text>
+
+  <rect x="630" y="230" width="165" height="56" rx="6" class="box"/>
+  <text x="640" y="250" class="lbl">Sanitizer</text>
+  <text x="640" y="266" class="small">wraps stdout in &lt;evidence&gt;,</text>
+  <text x="640" y="280" class="small">escapes vendor delimiters</text>
+
+  <rect x="445" y="300" width="170" height="56" rx="6" class="box"/>
+  <text x="455" y="320" class="lbl">Invocation store</text>
+  <text x="455" y="336" class="small">UUIDv4 per call,</text>
+  <text x="455" y="350" class="small">monotonic seq, in-mem map</text>
+
+  <rect x="630" y="300" width="165" height="56" rx="6" class="box"/>
+  <text x="640" y="320" class="lbl">Evidence registry</text>
+  <text x="640" y="336" class="small">SHA-256 at ingest,</text>
+  <text x="640" y="350" class="small">re-verify per call</text>
+
+  <rect x="445" y="370" width="170" height="56" rx="6" class="box"/>
+  <text x="455" y="390" class="lbl">Finding state machine</text>
+  <text x="455" y="406" class="small">INDICATION → DRAFT →</text>
+  <text x="455" y="420" class="small">APPROVED (HMAC by examiner)</text>
+
+  <rect x="630" y="370" width="165" height="56" rx="6" class="box-prompt"/>
+  <text x="640" y="390" class="lbl">System prompt</text>
+  <text x="640" y="406" class="small">reinforces architectural</text>
+  <text x="640" y="420" class="small">rules. Defense-in-depth.</text>
+
+  <!-- Typed tool wrappers -->
+  <rect x="40" y="490" width="770" height="200" rx="10" class="box-tool"/>
+  <text x="50" y="515" class="lbl" font-weight="700">Typed MCP tool wrappers (no generic shell ever exposed)</text>
+
+  <g font-size="12" fill="#1f7a3a">
+    <rect x="55" y="530" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="65" y="554">memory_volatility_run</text>
+    <rect x="55" y="572" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="65" y="596">memory_volatility_malfind</text>
+    <rect x="55" y="614" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="65" y="638">timeline_log2timeline</text>
+
+    <rect x="225" y="530" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="235" y="554">timeline_psort_query</text>
+    <rect x="225" y="572" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="235" y="596">evtx_parse</text>
+    <rect x="225" y="614" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="235" y="638">evtx_hayabusa_detect</text>
+
+    <rect x="395" y="530" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="405" y="554">mft_parse</text>
+    <rect x="395" y="572" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="405" y="596">registry_regripper</text>
+    <rect x="395" y="614" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="405" y="638">fs_fls / fs_icat / fs_mmls</text>
+
+    <rect x="565" y="530" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="575" y="554">fs_mactime</text>
+    <rect x="565" y="572" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="575" y="596">carve_bulk_extractor</text>
+    <rect x="565" y="614" width="160" height="36" rx="4" fill="#dff2e2" stroke="#1f7a3a"/>
+    <text x="575" y="638">malware_yara_scan</text>
+  </g>
+
+  <text x="55" y="675" class="small">+ browser_hindsight, prefetch_pecmd. All wrappers: pydantic schema, fixed binary, no shell, no curl, no rm.</text>
+
+  <!-- Evidence -->
+  <rect x="850" y="490" width="220" height="200" rx="10" class="box-evidence"/>
+  <text x="860" y="515" class="lbl" font-weight="700">Evidence (read-only)</text>
+  <text x="860" y="535" class="small">/cases/&lt;case&gt;/ mounted</text>
+  <text x="860" y="551" class="small">ro,noatime,nosuid,nodev</text>
+  <text x="860" y="572" class="small">Registered with SHA-256;</text>
+  <text x="860" y="588" class="small">re-verified per tool call.</text>
+  <rect x="870" y="610" width="180" height="60" rx="6" class="box"/>
+  <text x="880" y="630" class="lbl">disk.E01, mem.raw</text>
+  <text x="880" y="646" class="small">EVTX, PCAP, registry hives,</text>
+  <text x="880" y="660" class="small">.pf, browser profile</text>
+
+  <!-- TheHive writeback (right side) -->
+  <rect x="850" y="100" width="220" height="180" rx="10" class="box"/>
+  <text x="860" y="125" class="lbl" font-weight="700">TheHive write-back</text>
+  <text x="860" y="143" class="small">Only APPROVED findings.</text>
+  <text x="860" y="160" class="small">HMAC verified before push.</text>
+  <rect x="870" y="180" width="180" height="80" rx="6" class="box"/>
+  <text x="880" y="202" class="lbl">Case + Observables</text>
+  <text x="880" y="220" class="small">SWORN finding_id in</text>
+  <text x="880" y="234" class="small">customFields. tags=class,</text>
+  <text x="880" y="248" class="small">host, mitre, case.</text>
+
+  <!-- Arrows -->
+  <!-- orchestrator <-> gateway -->
+  <line x1="360" y1="220" x2="430" y2="220" class="arrow" marker-end="url(#arr)"/>
+  <text x="368" y="212" class="small">typed JSON RPC</text>
+  <line x1="430" y1="260" x2="360" y2="260" class="arrow" marker-end="url(#arr)"/>
+  <text x="368" y="276" class="small">&lt;evidence&gt;...&lt;/evidence&gt;</text>
+
+  <!-- gateway -> tools -->
+  <line x1="540" y1="426" x2="540" y2="490" class="arrow" marker-end="url(#arr)"/>
+  <text x="550" y="465" class="small">subprocess.run, shell=False</text>
+
+  <!-- tools -> evidence (read-only) -->
+  <line x1="780" y1="610" x2="850" y2="610" class="arrow" marker-end="url(#arr)"/>
+  <text x="788" y="600" class="small">read-only</text>
+
+  <!-- gateway -> thehive -->
+  <line x1="810" y1="200" x2="850" y2="200" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- BLOCKED: shell command attempt -->
+  <line x1="120" y1="270" x2="430" y2="395" class="arrow-block" marker-end="url(#arrR)"/>
+  <text x="170" y="345" class="small" fill="#a51212">attempted execute_shell_cmd: NOT EXPOSED</text>
+
+  <!-- Legend -->
+  <g transform="translate(870,310)">
+    <text x="0" y="0" class="legend" font-weight="700">Trust legend</text>
+    <rect x="0" y="10" width="14" height="14" class="box-untrusted"/>
+    <text x="22" y="22" class="legend">untrusted (LLM + evidence content)</text>
+    <rect x="0" y="34" width="14" height="14" class="box-arch"/>
+    <text x="22" y="46" class="legend">architectural defenses (load-bearing)</text>
+    <rect x="0" y="58" width="14" height="14" class="box-prompt"/>
+    <text x="22" y="70" class="legend">prompt-based (reinforcement only)</text>
+    <rect x="0" y="82" width="14" height="14" class="box-evidence"/>
+    <text x="22" y="94" class="legend">read-only evidence</text>
+    <rect x="0" y="106" width="14" height="14" class="box-tool"/>
+    <text x="22" y="118" class="legend">deterministic SIFT tool</text>
+    <line x1="0" y1="140" x2="20" y2="140" class="arrow-block"/>
+    <text x="30" y="144" class="legend" fill="#a51212">blocked path (no such tool)</text>
+  </g>
+
+  <text x="40" y="730" class="small">Diagram: SWORN v0.1.0. See docs/threat-model.md, docs/evidence-integrity.md, docs/regulatory-mappings.md.</text>
+</svg>

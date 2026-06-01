@@ -1,0 +1,27 @@
+SWORN: Signed Workflow Of Reasoned Narratives
+Copyright 2026 Jonathan
+
+This product includes software developed as a personal entry to the
+SANS Find Evil! hackathon (June 2026).
+
+Built on Protocol SIFT (https://github.com/teamdfir/protocol-sift)
+by Rob T. Lee and the SANS DFIR community.
+
+Architectural inspiration from Valhuntir (https://github.com/AppliedIR/Valhuntir)
+by Steve Anson.
+
+Uses the following third-party tools, each under its own license, called via
+typed wrappers in this project:
+
+  Volatility 3 (Volatility Foundation, Volatility Software License 1.0)
+  plaso / log2timeline / psort (Apache 2.0)
+  Eric Zimmerman tools - EvtxECmd, MFTECmd, RECmd, PECmd (MIT)
+  Hayabusa (GPL-3.0)
+  RegRipper (GPL-3.0)
+  The Sleuth Kit (CPL / IBM Public License / GPL)
+  bulk_extractor (public domain)
+  YARA (BSD 3-Clause)
+  Hindsight (Apache 2.0)
+  Florian Roth signature-base YARA rules (CC BY-NC 4.0; SWORN ships none of
+    these rules in this repo and downloads them at install time only if the
+    operator accepts the upstream license)
