@@ -77,3 +77,6 @@ sworn-keys/
 
 # YARA rules downloaded at install time (third-party licenses)
 /sworn/rules/
+
+# Local submission drafts (not for the public repo)
+/_submission/
