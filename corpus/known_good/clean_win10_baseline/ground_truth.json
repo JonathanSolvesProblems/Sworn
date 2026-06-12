@@ -1,0 +1,9 @@
+{
+  "case_id": "clean_win10_baseline",
+  "source": "Vanilla Windows 10 22H2 install, no user activity beyond OOBE, no third-party software, no compromise",
+  "host": "DESKTOP-CLEAN10",
+  "compromise": false,
+  "image_sha256_TODO": "fill in after acquiring disk.E01",
+  "artifacts": [],
+  "notes": "Negative control. SWORN must emit zero DRAFT and zero APPROVED findings. Any non-zero count is a false positive."
+}

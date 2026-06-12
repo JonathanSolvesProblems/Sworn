@@ -1,0 +1,32 @@
+{
+  "case_id": "findevil_sample_case",
+  "source": "Find Evil! hackathon sample case from the Devpost resources Egnyte link",
+  "host": "TO_FILL_IN_FROM_CASE_BRIEFING",
+  "compromise": true,
+  "image_sha256_TODO": "fill in after downloading disk.E01",
+  "memory_sha256_TODO": "fill in after downloading mem.raw if present",
+  "artifacts": [
+    {
+      "kind": "execution",
+      "description": "TEMPLATE: rename and complete from the case briefing",
+      "evidence": [
+        {"tool": "prefetch", "file": "EXAMPLE.EXE-1A2B3C4D.pf"},
+        {"tool": "amcache",  "key":  "EXAMPLE.EXE"},
+        {"tool": "evtx", "channel": "Security", "event_id": 4688}
+      ],
+      "mitre": ["T1059"],
+      "severity": "high"
+    },
+    {
+      "kind": "persistence",
+      "description": "TEMPLATE: rename and complete from the case briefing",
+      "evidence": [
+        {"tool": "run_key", "hive": "NTUSER.DAT", "value": "EXAMPLE"},
+        {"tool": "scheduled_task", "name": "EXAMPLE_TASK"}
+      ],
+      "mitre": ["T1547.001"],
+      "severity": "high"
+    }
+  ],
+  "notes": "Template. Replace TEMPLATE rows with real labeled artifacts from the Find Evil! case briefing. The eval harness scores per-class; a SWORN APPROVED finding counts as TP only if class matches kind, host matches, and backing_invocations cite at least one tool from evidence."
+}
