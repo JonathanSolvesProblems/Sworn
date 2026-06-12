@@ -68,7 +68,7 @@ class InferenceConstraintGateway:
 
         notes: list[str] = []
 
-        # Moat #1 — provenance is required and must resolve.
+        # Moat #1:provenance is required and must resolve.
         if not finding.backing_invocations:
             raise FindingRejected(
                 FindingRejected.Reason.no_provenance,
@@ -93,7 +93,7 @@ class InferenceConstraintGateway:
                     f"invocation {inv.invocation_id} stdout hash drift",
                 )
 
-        # Moat #3 — corroboration gate decides DRAFT vs INDICATION.
+        # Moat #3:corroboration gate decides DRAFT vs INDICATION.
         state = gated_state(finding)
         if state is FindingState.indication:
             notes.append(

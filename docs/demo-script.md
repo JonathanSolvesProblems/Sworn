@@ -14,7 +14,7 @@ Target length: 4:50. Hard stop at 5:00.
 - Browser tab with `docs/architecture.svg` open for the closing shot.
 - `obs-studio` configured 1080p, 30 fps, system audio off, mic on.
 
-## Scene 1 — The problem (0:00 to 0:30)
+## Scene 1: The problem (0:00 to 0:30)
 
 Voiceover, terminal showing a curl-installed Protocol SIFT session that
 hallucinated a finding. Hold on the hallucinated line.
@@ -24,7 +24,7 @@ hallucinated a finding. Hold on the hallucinated line.
 > real incident. SWORN is what I built to make that impossible by
 > architecture, not by prompt."
 
-## Scene 2 — Inference Constraint Gateway (0:30 to 1:15)
+## Scene 2: Inference Constraint Gateway (0:30 to 1:15)
 
 Run `sworn tools list` and pipe through `jq` to show typed function
 signatures. Highlight there is no `execute_shell_cmd`.
@@ -35,7 +35,7 @@ signatures. Highlight there is no `execute_shell_cmd`.
 
 Show `docs/threat-model.md` open, scroll to T3.
 
-## Scene 3 — Start a session (1:15 to 1:50)
+## Scene 3: Start a session (1:15 to 1:50)
 
 Run:
 
@@ -55,7 +55,7 @@ Pause on the entries. Voiceover:
 > hash-chained. If a single byte of any tool output is tampered with later,
 > `sworn verify ledger` rejects it."
 
-## Scene 4 — The agent triages (1:50 to 3:00)
+## Scene 4: The agent triages (1:50 to 3:00)
 
 Drive the orchestrator end-to-end. Show specialist agents firing in turn.
 Speed up the recording 2x for the bulk of triage. Slow back to real-time
@@ -73,7 +73,7 @@ When a tool errors out (force one by passing a bad path), the loop logs a
 > argument. Self-correction is the tiebreaker criterion. It is also
 > auditable."
 
-## Scene 5 — Corroboration gate (3:00 to 3:45)
+## Scene 5: Corroboration gate (3:00 to 3:45)
 
 Show the agent submit a finding citing only prefetch.
 
@@ -87,7 +87,7 @@ Switch to the actions.jsonl tail. The finding's state is `indication`.
 
 Then the agent corroborates with Amcache. Resubmit; state is `draft`.
 
-## Scene 6 — Negative control (3:45 to 4:15)
+## Scene 6: Negative control (3:45 to 4:15)
 
 Run `python -m eval.negative_control --case-root cases/CLEAN-WIN10`.
 
@@ -95,7 +95,7 @@ Run `python -m eval.negative_control --case-root cases/CLEAN-WIN10`.
 > Windows 10 baseline. Zero draft findings. The agent stays silent. Quote
 > the silence rate, not just the true positives."
 
-## Scene 7 — Adversarial prompt injection (4:15 to 4:35)
+## Scene 7: Adversarial prompt injection (4:15 to 4:35)
 
 Cat `adversarial/poisoned_evtx/example.txt`. Voiceover:
 
@@ -104,7 +104,7 @@ Cat `adversarial/poisoned_evtx/example.txt`. Voiceover:
 > to submit the bogus 'impact' finding the message asks for, the gateway
 > rejects it because there is no invocation backing it."
 
-## Scene 8 — APPROVED + TheHive (4:35 to 4:50)
+## Scene 8: APPROVED + TheHive (4:35 to 4:50)
 
 Run `sworn findings approve <id>` (passphrase typed silently). Then
 `sworn writeback thehive --dry-run`. Show the JSON payload with

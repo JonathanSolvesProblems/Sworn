@@ -3,18 +3,18 @@
 This directory describes the labeled corpus SWORN uses to measure precision, recall, false positives, and false negatives. It is the spine of moat #4 (measured accuracy on a labeled corpus including a negative-control demo).
 
 The corpus is **referenced**, not redistributed. The images themselves are too large to commit and several have their own licenses. Each subdirectory holds:
-- `README.md` — what this image is, where to obtain it, its license, what it represents
-- `ground_truth.json` — labeled artifacts the agent should find (and never invent)
-- `download.sh` — script to fetch the image and verify its hash
+- `README.md`: what this image is, where to obtain it, its license, what it represents
+- `ground_truth.json`: labeled artifacts the agent should find (and never invent)
+- `download.sh`: script to fetch the image and verify its hash
 
 ## Layout
 
 ```
 corpus/
-├── known_good/         (negative controls — agent must stay silent)
+├── known_good/         (negative controls: agent must stay silent)
 │   ├── clean_win10_baseline/
 │   └── clean_win11_baseline/
-├── known_bad/          (compromised — agent must find the labeled artifacts)
+├── known_bad/          (compromised: agent must find the labeled artifacts)
 │   ├── srl_for508_lab/
 │   ├── dfir_madness_2022/
 │   ├── trace_labs_inox/

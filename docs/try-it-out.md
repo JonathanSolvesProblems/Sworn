@@ -72,11 +72,11 @@ In both modes SWORN will:
 4. Stage findings as DRAFT in `./cases/DEMO-001/findings.jsonl` only after corroboration
 
 Optional flags for both modes:
-- `--mft /path/to/$MFT` — feed a pre-extracted MFT to the disk specialist
-- `--prefetch /path/to/Prefetch` — feed a Prefetch directory to PECmd
-- `--chrome-profile /path/to/User\ Data/Default` — feed a Chromium profile to Hindsight
-- `--system-hive` / `--software-hive` / `--ntuser-hive` / `--amcache` — point RegRipper at specific hives
-- `--evtx /path/to/exported.evtx` — point Hayabusa at exported event logs
+- `--mft /path/to/$MFT`: feed a pre-extracted MFT to the disk specialist
+- `--prefetch /path/to/Prefetch`: feed a Prefetch directory to PECmd
+- `--chrome-profile /path/to/User\ Data/Default`: feed a Chromium profile to Hindsight
+- `--system-hive` / `--software-hive` / `--ntuser-hive` / `--amcache`: point RegRipper at specific hives
+- `--evtx /path/to/exported.evtx`: point Hayabusa at exported event logs
 
 ## Approve a Finding
 

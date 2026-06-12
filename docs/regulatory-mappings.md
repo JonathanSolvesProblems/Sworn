@@ -4,7 +4,7 @@ SWORN is not a certified forensic product. It is a defensible-methodology demons
 
 The aim is the language Cheri Carr, Ovie Carroll, Amanda Rankhorn, John Wilson, and Marc Brawner have used in public talks: *"defensible methodology, conservative claims, complete chain of custody."* SWORN should pass the *would-this-survive-cross-examination* sniff test even when it is not yet certified.
 
-## NIST SP 800-86 — Guide to Integrating Forensic Techniques into Incident Response
+## NIST SP 800-86: Guide to Integrating Forensic Techniques into Incident Response
 
 | 800-86 area | SWORN mapping |
 |---|---|
@@ -13,7 +13,7 @@ The aim is the language Cheri Carr, Ovie Carroll, Amanda Rankhorn, John Wilson, 
 | 3.3 Analysis | Findings cite specific tool invocations; corroboration enforced for class-based claims. |
 | 3.4 Reporting | DRAFT findings carry caveats, corroborating artifacts, and confidence. APPROVED findings require human HMAC sign-off. |
 
-## ISO/IEC 27037:2012 — Guidelines for identification, collection, acquisition, and preservation of digital evidence
+## ISO/IEC 27037:2012: Guidelines for identification, collection, acquisition, and preservation of digital evidence
 
 | 27037 principle | SWORN mapping |
 |---|---|
@@ -26,10 +26,10 @@ The aim is the language Cheri Carr, Ovie Carroll, Amanda Rankhorn, John Wilson, 
 
 | FRE | SWORN mapping |
 |---|---|
-| FRE 901(a) — Authentication | Hash chain + Ed25519 signatures establish that ledger entries are what they purport to be. |
-| FRE 901(b)(9) — Process or system producing accurate result | Accuracy report in [`ACCURACY.md`](../ACCURACY.md) quotes precision, recall, and negative-control silence rate. |
-| FRE 902 — Self-authenticating records | Signed ledger entries with publishable public key. |
-| FRE 803(6) — Records of regularly conducted activity | Ledger is created as part of regular automated operation, not for litigation purposes. |
+| FRE 901(a): Authentication | Hash chain + Ed25519 signatures establish that ledger entries are what they purport to be. |
+| FRE 901(b)(9): Process or system producing accurate result | Accuracy report in [`ACCURACY.md`](../ACCURACY.md) quotes precision, recall, and negative-control silence rate. |
+| FRE 902: Self-authenticating records | Signed ledger entries with publishable public key. |
+| FRE 803(6): Records of regularly conducted activity | Ledger is created as part of regular automated operation, not for litigation purposes. |
 
 ## Daubert Factors (Daubert v. Merrell Dow Pharmaceuticals, 1993)
 
