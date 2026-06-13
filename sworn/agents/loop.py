@@ -107,6 +107,24 @@ class SpecialistLoop:
             self._bump()
             attempt += 1
             result = await tool.execute(current_args)
+
+            # Defensive degrade path: tool binary missing on this host.
+            # Skip retries because re-running the same call would crash
+            # again; log a give-up entry so the audit trail is honest
+            # about what happened.
+            if result.invocation.exit_code == -127:
+                self.session.ledger.append(
+                    "specialist_gave_up",
+                    {
+                        "specialist": self.name,
+                        "tool": tool.name,
+                        "reason": "tool_unavailable",
+                        "final_exit_code": -127,
+                        "invocation_id": result.invocation.invocation_id,
+                    },
+                )
+                return result
+
             if success_predicate(result):
                 self.observations.append(
                     Observation(

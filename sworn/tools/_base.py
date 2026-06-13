@@ -117,12 +117,57 @@ class TypedTool(ABC):
             ev = self.evidence.get_by_path(p) or self.evidence.register(p)
             evidence_reads.append(ev)
 
+        argv_tail = self.build_argv(args)
+
         if not shutil.which(self.binary) and not Path(self.binary).exists():
-            raise FileNotFoundError(
-                f"tool {self.name!r}: binary not found on PATH: {self.binary}"
+            # Binary unavailable. Emit a tombstone invocation so the audit
+            # trail still records the attempt; the SpecialistLoop checks
+            # for exit_code=-127 and gives up gracefully instead of
+            # retrying a binary that will never appear. This is the
+            # defensive layer that lets SWORN survive a partial SIFT
+            # install or a single missing tool on the runner.
+            seq = self.invocations.next_seq()
+            now = Invocation.now()
+            stderr_body = f"binary not found on PATH: {self.binary}".encode("utf-8")
+            inv = Invocation(
+                invocation_id=new_invocation_id(),
+                seq=seq,
+                case_id=self.case_id,
+                tool=self.name,
+                args=tuple(argv_tail),
+                stdout_sha256=sha256_bytes(b""),
+                stderr_sha256=sha256_bytes(stderr_body),
+                exit_code=-127,
+                latency_ms=0,
+                started_at=now,
+                finished_at=now,
+                evidence_ids_read=tuple(ev.evidence_id for ev in evidence_reads),
+            )
+            self.invocations.record(inv)
+            self.ledger.append(
+                "tool_unavailable",
+                {
+                    "case_id": self.case_id,
+                    "invocation_id": inv.invocation_id,
+                    "seq": inv.seq,
+                    "tool": inv.tool,
+                    "expected_binary": self.binary,
+                    "evidence_ids_read": list(inv.evidence_ids_read),
+                },
+            )
+            wrapped = wrap_evidence(
+                body=f"[tool {self.name!r} binary {self.binary!r} not found on PATH]",
+                tool=self.name,
+                invocation_id=inv.invocation_id,
+                bytes_seen=0,
+            )
+            return ToolExecutionResult(
+                invocation=inv,
+                stdout_for_llm=wrapped,
+                rendered_command=f"# unavailable: {self.binary}",
             )
 
-        argv = [self.binary, *self.build_argv(args)]
+        argv = [self.binary, *argv_tail]
         rendered = " ".join(shlex.quote(a) for a in argv)
         seq = self.invocations.next_seq()
         started = Invocation.now()
