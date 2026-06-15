@@ -31,7 +31,12 @@ No other entry to Find Evil! is expected to combine all of these:
 
 ## Architecture at a Glance
 
-Full diagram with trust boundaries: [docs/architecture.png](docs/architecture.png) (raster, opens in any browser), [docs/architecture.svg](docs/architecture.svg) (vector, scales cleanly), or [docs/architecture.drawio](docs/architecture.drawio) (editable source, opens in draw.io / diagrams.net / the VSCode Draw.io Integration extension). ASCII summary below.
+![SWORN architecture: Custom MCP Server with Inference Constraint Gateway, color-coded trust zones, 16 typed tool wrappers, signed Ed25519 ledger, and the blocked execute_shell_cmd path](docs/architecture.png)
+
+Vector source: [docs/architecture.svg](docs/architecture.svg). Editable source for draw.io / diagrams.net / the VSCode Draw.io Integration extension: [docs/architecture.drawio](docs/architecture.drawio).
+
+<details>
+<summary>ASCII fallback (for terminal viewers)</summary>
 
 ```
                                        SWORN Inference Constraint Gateway
@@ -57,6 +62,8 @@ Full diagram with trust boundaries: [docs/architecture.png](docs/architecture.pn
                                                 | pcap  logs  etc.  |
                                                 +-------------------+
 ```
+
+</details>
 
 Trust boundaries, architectural vs prompt-based guardrails, and the threat model are documented in [docs/threat-model.md](docs/threat-model.md).
 
