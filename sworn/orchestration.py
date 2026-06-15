@@ -112,7 +112,7 @@ async def run_builtin_triage(
         total_obs += len(spec.observations)
         total_replans += len(spec.replans)
 
-    if paths.disk_image and not halted:
+    if paths.disk_image:
         spec = DiskSpecialist(
             session,
             paths.disk_image,
@@ -125,12 +125,13 @@ async def run_builtin_triage(
         try:
             await spec.triage()
         except SelfCorrectionExceeded as e:
-            halted, halted_reason = "disk", str(e)
+            if halted is None:
+                halted, halted_reason = "disk", str(e)
         specialists_run.append("disk")
         total_obs += len(spec.observations)
         total_replans += len(spec.replans)
 
-    if not halted:
+    if True:
         net = NetworkSpecialist(
             session,
             disk_image=paths.disk_image,
@@ -141,7 +142,8 @@ async def run_builtin_triage(
         try:
             await net.triage()
         except SelfCorrectionExceeded as e:
-            halted, halted_reason = "network", str(e)
+            if halted is None:
+                halted, halted_reason = "network", str(e)
         specialists_run.append("network")
         total_obs += len(net.observations)
         total_replans += len(net.replans)
