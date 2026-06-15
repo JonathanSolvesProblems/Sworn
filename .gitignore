@@ -46,8 +46,9 @@ Thumbs.db
 *.swo
 *~
 
-# SWORN runtime artifacts (must never be committed)
-/cases/
+# SWORN runtime artifacts (must never be committed, except curated demo samples)
+/cases/*/
+!/cases/DEMO-*-SAMPLE/
 /evidence/
 /analysis/
 /exports/
@@ -64,10 +65,13 @@ Thumbs.db
 *.pf
 *.dmp
 
-# Ledger and keys (must never be committed)
+# Ledger and keys (must never be committed, except in curated demo samples)
 actions.jsonl
 findings.jsonl
 approvals.jsonl
+!/cases/DEMO-*-SAMPLE/actions.jsonl
+!/cases/DEMO-*-SAMPLE/findings.jsonl
+!/cases/DEMO-*-SAMPLE/approvals.jsonl
 *.ed25519
 *.hmac
 *.pem
