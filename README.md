@@ -2,6 +2,8 @@
 
 **Signed Workflow Of Reasoned Narratives.** A Custom MCP gateway for Protocol SIFT where every finding is cryptographically signed back to the deterministic tool invocation that produced it. Competitors log. SWORN proves.
 
+**Demo video (3 min):** https://www.youtube.com/watch?v=FFFvofEWEVw
+
 > *"Because deterministic DFIR utilities remain the sole source of analytical output, the validation, interpretation, and reporting of analysis are always performed by the investigator, not the AI."* Rob T. Lee, SANS, on Protocol SIFT.
 
 SWORN is built for the SANS [Find Evil!](https://findevil.devpost.com/) hackathon (June 2026) on the SANS SIFT Workstation. It is an Apache 2.0 open-source extension of [Protocol SIFT](https://github.com/teamdfir/protocol-sift) and a Custom MCP server (the second of the four supported architectural approaches in the hackathon rules).

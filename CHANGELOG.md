@@ -8,7 +8,7 @@ Production gaps tracked in [docs/whats-next.md](docs/whats-next.md): cloud foren
 
 ## [0.1.0] - 2026-06-15
 
-Initial release. Built in 18 days as a SANS Find Evil! hackathon entry.
+Initial release. Built in 18 days as a SANS Find Evil! hackathon entry. Demo video: https://www.youtube.com/watch?v=FFFvofEWEVw
 
 ### The five moats (architectural, not prompt-based)
 

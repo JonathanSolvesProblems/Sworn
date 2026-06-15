@@ -84,3 +84,11 @@ sworn-keys/
 
 # Local submission drafts (not for the public repo)
 /_submission/
+
+# Raw demo recordings (large; the trimmed copies live under _submission/ which is gitignored)
+/2026-06-15 10-37-04.mp4
+/SwormVideo.mov
+
+# Preview folder: commit images, ignore videos (the YouTube short is large and lives on YouTube anyway)
+preview/*.mp4
+preview/*.mov
