@@ -77,7 +77,7 @@ Initial release. Built in 18 days as a SANS Find Evil! hackathon entry.
 - README with locked uniqueness claim and Rob T. Lee's vocabulary mirrored verbatim
 - `docs/threat-model.md`, `docs/evidence-integrity.md`, `docs/regulatory-mappings.md` (NIST SP 800-86, ISO/IEC 27037, FRE 901/902/803(6), Daubert factors)
 - `docs/try-it-out.md`, `docs/demo-script.md`, `docs/devpost-description.md`, `docs/whats-next.md`
-- `docs/architecture.svg` with color-coded trust zones
+- Architecture diagram in three formats: `docs/architecture.png` (raster, 144 DPI), `docs/architecture.svg` (vector source), and `docs/architecture.drawio` (editable draw.io source). All three are color-coded by trust zone (red = untrusted LLM + evidence content, blue = architectural defenses, amber dashed = prompt-based reinforcement only, purple = read-only evidence, green = deterministic SIFT tool).
 
 ### Tested
 

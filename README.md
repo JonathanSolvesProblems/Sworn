@@ -29,7 +29,7 @@ No other entry to Find Evil! is expected to combine all of these:
 
 ## Architecture at a Glance
 
-See [docs/architecture.svg](docs/architecture.svg) for the full diagram with trust boundaries. ASCII summary below.
+Full diagram with trust boundaries: [docs/architecture.png](docs/architecture.png) (raster, opens in any browser), [docs/architecture.svg](docs/architecture.svg) (vector, scales cleanly), or [docs/architecture.drawio](docs/architecture.drawio) (editable source, opens in draw.io / diagrams.net / the VSCode Draw.io Integration extension). ASCII summary below.
 
 ```
                                        SWORN Inference Constraint Gateway

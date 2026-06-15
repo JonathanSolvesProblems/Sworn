@@ -1,0 +1,244 @@
+<mxfile host="app.diagrams.net" type="device" version="24.7.7">
+  <diagram id="sworn-arch" name="SWORN Architecture">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="SWORN: Inference Constraint Gateway over the SIFT toolset&#10;Architectural Pattern: Custom MCP Server (Find Evil! approach #2)" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#111111;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="900" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Trust boundaries are colored. Architectural defenses are solid borders; prompt-based reinforcements are dashed amber." style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="900" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="untrusted_box" value="Untrusted: LLM orchestrator + specialists&#10;&#10;Claude Code / OpenClaw / multi-agent (memory, disk,&#10;network, synthesizer). Evidence content is also&#10;untrusted: never interpreted as instructions." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fde9e9;strokeColor=#a51212;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="320" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="orchestrator" value="Orchestrator&#10;claude / openclaw" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="210" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="specialists" value="Specialists&#10;memory / disk / network /&#10;synthesizer (each capped)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="210" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gateway_box" value="SWORN Inference Constraint Gateway (Custom MCP Server)&#10;Architectural enforcement. No execute_shell_cmd." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef6ff;strokeColor=#1a4fa1;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="420" height="430" as="geometry" />
+        </mxCell>
+
+        <mxCell id="finding_validator" value="Finding validator&#10;reject if no invocation_id&#10;reject if stdout hash mismatch" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="160" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="corroboration" value="Corroboration rules&#10;2+ artifact families per&#10;finding class or auto-INDICATION" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="160" width="190" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ledger" value="Ed25519 ledger&#10;actions.jsonl, append-only,&#10;hash-chained, signed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="240" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sanitizer" value="Sanitizer (Moat 5)&#10;wraps stdout in &amp;lt;evidence&amp;gt;,&#10;escapes 41 vendor delimiters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="240" width="190" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="invocation_store" value="Invocation store&#10;server-issued UUIDv4 per call,&#10;monotonic seq, in-mem map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="320" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence_registry" value="Evidence registry&#10;SHA-256 at ingest,&#10;re-verify per call" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="320" width="190" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="finding_state" value="Finding state machine&#10;INDICATION → DRAFT →&#10;APPROVED (HMAC by examiner)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="400" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="system_prompt" value="System prompt&#10;reinforces architectural&#10;rules. Defense-in-depth." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e8;strokeColor=#b07a17;strokeWidth=1;dashed=1;dashPattern=6 3;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="400" width="190" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tools_box" value="Typed MCP tool wrappers (no generic shell ever exposed)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fbf2;strokeColor=#1f7a3a;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="820" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tool_vol_run" value="memory_volatility_run" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="605" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_vol_malfind" value="memory_volatility_malfind" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="645" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_log2timeline" value="timeline_log2timeline_extract" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="685" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_psort" value="timeline_psort_query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="725" width="180" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tool_evtx" value="evtx_parse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="605" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_hayabusa" value="evtx_hayabusa_detect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="645" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_mft" value="mft_parse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="685" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_regripper" value="registry_regripper" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="260" y="725" width="180" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tool_fls" value="fs_fls" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="605" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_icat" value="fs_icat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="645" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_mmls" value="fs_mmls" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="685" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_mactime" value="fs_mactime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="725" width="180" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tool_bulk_extractor" value="carve_bulk_extractor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="605" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_yara" value="malware_yara_scan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="645" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_hindsight" value="browser_hindsight" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="685" width="180" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="tool_pecmd" value="prefetch_pecmd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dff2e2;strokeColor=#1f7a3a;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="725" width="180" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tools_caption" value="16 typed functions across 11 toolchains. All wrappers: pydantic schema, fixed binary, shell=False, no curl, no rm, no eval." style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#444444;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="770" width="780" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="evidence_box" value="Evidence (read-only)&#10;/cases/&amp;lt;case&amp;gt;/ mounted&#10;ro,noatime,nosuid,nodev&#10;Registered with SHA-256;&#10;re-verified per tool call." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1efff;strokeColor=#4a3aa5;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="560" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence_files" value="disk.E01, mem.raw&#10;EVTX, PCAP, registry hives,&#10;.pf, browser profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="920" y="690" width="220" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="thehive_box" value="TheHive write-back&#10;Only APPROVED findings.&#10;HMAC verified before push." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="260" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="thehive_case" value="Case + Observables&#10;SWORN finding_id in&#10;customFields. tags=class,&#10;host, mitre, case." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#111111;strokeWidth=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="920" y="180" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge1" style="endArrow=classic;html=1;rounded=0;strokeColor=#111111;strokeWidth=1.4;" edge="1" parent="1" source="specialists" target="gateway_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1_label" value="typed JSON RPC" style="text;html=1;align=center;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="360" y="200" width="100" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge2" style="endArrow=classic;html=1;rounded=0;strokeColor=#111111;strokeWidth=1.4;" edge="1" parent="1" source="gateway_box" target="specialists">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="260" />
+              <mxPoint x="380" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2_label" value="&amp;lt;evidence&amp;gt;...&amp;lt;/evidence&amp;gt;" style="text;html=1;align=center;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="360" y="270" width="120" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge3" style="endArrow=classic;html=1;rounded=0;strokeColor=#111111;strokeWidth=1.4;" edge="1" parent="1" source="gateway_box" target="tools_box">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="540" />
+              <mxPoint x="450" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3_label" value="subprocess.run, shell=False" style="text;html=1;align=center;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="540" y="540" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge4" style="endArrow=classic;html=1;rounded=0;strokeColor=#111111;strokeWidth=1.4;" edge="1" parent="1" source="tools_box" target="evidence_box">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="685" />
+              <mxPoint x="900" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4_label" value="read-only" style="text;html=1;align=center;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="855" y="660" width="80" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge5" style="endArrow=classic;html=1;rounded=0;strokeColor=#111111;strokeWidth=1.4;" edge="1" parent="1" source="gateway_box" target="thehive_box">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="200" />
+              <mxPoint x="900" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="blocked_edge" style="endArrow=classic;html=1;rounded=0;strokeColor=#b00000;strokeWidth=1.8;dashed=1;dashPattern=5 3;" edge="1" parent="1" source="orchestrator" target="finding_state">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="430" />
+              <mxPoint x="440" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="blocked_label" value="attempted execute_shell_cmd: NOT EXPOSED" style="text;html=1;align=center;fontSize=10;fontColor=#a51212;" vertex="1" parent="1">
+          <mxGeometry x="180" y="410" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend_box" value="Trust legend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="320" width="260" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_untrusted" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fde9e9;strokeColor=#a51212;strokeWidth=1.6;" vertex="1" parent="1">
+          <mxGeometry x="920" y="360" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_untrusted_lbl" value="untrusted (LLM + evidence content)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="356" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_arch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef6ff;strokeColor=#1a4fa1;strokeWidth=1.6;" vertex="1" parent="1">
+          <mxGeometry x="920" y="386" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_arch_lbl" value="architectural defenses (load-bearing)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="382" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_prompt" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7e8;strokeColor=#b07a17;strokeWidth=1.4;dashed=1;dashPattern=6 3;" vertex="1" parent="1">
+          <mxGeometry x="920" y="412" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_prompt_lbl" value="prompt-based (reinforcement only)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="408" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_evidence" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1efff;strokeColor=#4a3aa5;strokeWidth=1.6;" vertex="1" parent="1">
+          <mxGeometry x="920" y="438" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_evidence_lbl" value="read-only evidence" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="434" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_tool" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fbf2;strokeColor=#1f7a3a;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="920" y="464" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_tool_lbl" value="deterministic SIFT tool" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="950" y="460" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_blocked_line" style="endArrow=classic;html=1;rounded=0;strokeColor=#b00000;strokeWidth=1.8;dashed=1;dashPattern=5 3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="920" y="495" as="sourcePoint" />
+            <mxPoint x="942" y="495" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_blocked_lbl" value="blocked path (no such tool)" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#a51212;" vertex="1" parent="1">
+          <mxGeometry x="950" y="485" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="footer" value="SWORN v0.1.0  •  github.com/JonathanSolvesProblems/Sworn  •  Apache 2.0  •  See docs/threat-model.md, docs/evidence-integrity.md, docs/regulatory-mappings.md" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="40" y="810" width="1100" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
